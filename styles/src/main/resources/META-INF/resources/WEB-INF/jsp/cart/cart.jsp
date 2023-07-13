@@ -143,7 +143,7 @@
 				.click(
 						function() {
 							var IMP = window.IMP;
-							IMP.init('imp68263707');
+							IMP.init('impXXXXXXX');
 							var totalPrice = $
 							{
 								totalPrice
