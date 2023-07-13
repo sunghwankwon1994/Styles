@@ -1,0 +1,122 @@
+.container {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+  padding-left: 30px;
+}
+
+.profile-box {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  text-align: center;
+  padding: 40px;
+  background-color: #336699;
+  color: #fff;
+}
+
+.profile-header img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-header h1,
+.profile-header p {
+  margin: 5px 0;
+}
+
+.profile-body {
+  padding: 20px;
+}
+
+.profile-body h2 {
+  margin-bottom: 10px;
+  color: #336699;
+}
+
+.profile-body p {
+  margin-bottom: 20px;
+}
+
+.contact {
+  margin-top: 30px;
+}
+
+.contact h2 {
+  margin-bottom: 10px;
+  color: #336699;
+}
+
+.contact ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contact ul li {
+  margin-bottom: 5px;
+}
+
+.contact ul li strong {
+  display: inline-block;
+  width: 100px;
+}
+.img-frame {
+  position: relative;
+  width: 150px;
+  height: 50px;
+  overflow: hidden;
+}
+.icon-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 65px;
+}
+.profile-footer {
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+.profile-footer h2 {
+  margin-top: -20px;
+  color: #336699;
+}
+table {
+  margin-left: auto;
+  margin-right: auto;
+}
+th,
+td {
+  padding-right: 10px;
+}
+/* 
+table,
+th,
+td {
+  border: 1px solid gray;
+  border-collapse: collapse;
+}
+
+
+
+th,
+td {
+  width: 100px;
+  padding: 5px;
+}
+
+caption {
+  font: 20px;
+  margin: 10px;
+  font-weight: bold;
+}
+
+.table-title {
+  text-align: center;
+} */

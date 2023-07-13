@@ -1,0 +1,66 @@
+package com.semiproject.styles.admin;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+@Controller
+@RequestMapping("/admin/users")
+public class UserController {
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @GetMapping
+    public String userList(Model model) {
+        model.addAttribute("users", userRepository.findAll());
+        return "admin/userList";
+    }
+
+    @GetMapping("/add")
+    public String addUserForm(Model model) {
+        model.addAttribute("user", new User());
+        return "admin/userForm";
+    }
+
+    @PostMapping("/add")
+    public String addUser(@ModelAttribute("user") User user) {
+        userRepository.save(user);
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editUserForm(@PathVariable("id") int id, Model model) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("user", user);
+        return "admin/userForm";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editUser(@PathVariable("id") int id, @ModelAttribute("user") User updatedUser) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+
+        user.setUsername(updatedUser.getUsername());
+        user.setEmail(updatedUser.getEmail());
+        user.setPassword(updatedUser.getPassword());
+        user.setAddress(updatedUser.getAddress());
+        user.setPhone_number(updatedUser.getPhone_number());
+        user.setAdmin(updatedUser.isAdmin());
+        userRepository.save(user); // 수정된 정보를 저장
+        return "redirect:/admin/users";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        userRepository.delete(user);
+        return "redirect:/admin/users";
+    }
+}

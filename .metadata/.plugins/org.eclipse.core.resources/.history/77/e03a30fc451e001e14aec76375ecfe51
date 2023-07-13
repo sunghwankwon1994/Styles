@@ -1,0 +1,86 @@
+package com.semiproject.styles.product;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class ProductController {
+
+	private final ProductService productService;
+
+	@Autowired
+	public ProductController(ProductService productService) {
+		this.productService = productService;
+	}
+
+	@GetMapping("/products")
+	public String showProducts(ModelMap model) {
+		List<Product> products = productService.getAllProducts();
+		model.addAttribute("products", products);
+		return "products/products";
+	}
+
+	@GetMapping(value = "/api/products", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Product> getAllProducts() {
+		List<Product> products = productService.getAllProducts();
+		for (Product product : products) {
+			String imageFileName = product.getId() + ".jpg";
+			String imageUrl = "../static/" + imageFileName;
+			product.setImageUrl(imageUrl);
+
+		}
+		return products;
+	}
+
+	@GetMapping("/products/{id}")
+	public String showProductDetails(@PathVariable("id") Long id, ModelMap model) {
+	    Product product = productService.getProductById(id);
+	    if (product == null) {
+	        return "error/404"; // 상품을 찾을 수 없을 경우 404 에러 페이지로 이동
+	    }
+	    model.addAttribute("product", product);
+	    return "products/products";
+	}
+
+	@GetMapping(value = "/api/products/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Product getProductById(@PathVariable("id") Long id) {
+		return productService.getProductById(id);
+	}
+
+	@GetMapping("/add-to-cart/{productId}")
+	public String addProductToCart(@PathVariable("productId") Long productId, HttpSession session) {
+	    // 세션에서 현재 로그인한 사용자의 정보를 가져옵니다.
+	    User user = (User) session.getAttribute("user");
+
+	    // 로그인한 사용자가 없는 경우, 로그인 페이지로 리다이렉트합니다.
+	    if (user == null) {
+	        return "redirect:/login";
+	    }
+
+	    // 선택한 상품을 데이터베이스에서 조회합니다.
+	    Product product = productService.getProductById(productId);
+	    if (product == null) {
+	        // 상품을 찾을 수 없는 경우, 에러 페이지로 이동합니다.
+	        return "error/404";
+	    }
+
+	    // 카트에 상품을 추가합니다.
+	    CartItem cartItem = new CartItem();
+	    cartItem.setUser(user);
+	    cartItem.setProduct(product);
+	    cartItem.setQuantity(1); // 상품 수량은 임의로 1로 설정합니다.
+
+	    cartItemService.addCartItem(cartItem);
+
+	    return "redirect:/cart";
+	}
+}

@@ -1,0 +1,25 @@
+package com.semiproject.styles.cart;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CartService {
+
+	@Autowired
+	private CartItemRepository cartItemRepository;
+
+	public List<CartItem> getCartItemsByUser(User user) {
+		return cartItemRepository.findByUser(user);
+	}
+
+	public void addCartItem(CartItem cartItem) {
+		cartItemRepository.save(cartItem);
+	}
+
+	public void removeCartItem(Long cartItemId) {
+		cartItemRepository.deleteById(cartItemId);
+	}
+}

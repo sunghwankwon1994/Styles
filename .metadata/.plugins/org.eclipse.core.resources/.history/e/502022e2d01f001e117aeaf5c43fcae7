@@ -1,0 +1,152 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Home</title>
+  <link href="webjars/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../css/home.css" rel="stylesheet" type="text/css">
+  <style>
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  </style>
+</head>
+<body>
+  <%@ include file="../common/navbar.jspf"%>
+  <main class="main">
+    <div class="container">
+      <div id="carouselExample" class="carousel slide mt-4" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <c:forEach var="slide" items="${slides}" varStatus="status">
+            <div class="carousel-item ${status.index == 0 ? 'active' : ''}">
+              <img src="${slide.imageUrl}" class="d-block w-100" alt="Slide Image">
+            </div>
+          </c:forEach>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <section class="product-container my-4">
+        <h2 class="text-center">제품</h2>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="productList"></div>
+      </section>
+
+      <section class="container">
+        <div class="series1">
+          <img src="https://i.pinimg.com/564x/82/53/33/825333517da7351156b3e65f0e815119.jpg" class="img-fluid" alt="Series Image">
+          <div class="text-box">
+            <h1 class="title3">Freeform</h1>
+            <p class="info-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime unde officiis, dolores nostrum cum quibusdam dolore eum nesciunt adipisci iusto perferendis vitae consequatur sit explicabo quo voluptate ducimus eos porro!</p>
+            <a href="#">
+              <h3 class="text1">자세히 보기</h3>
+            </a>
+          </div>
+        </div>
+        <div class="series2">
+          <img src="https://i.pinimg.com/564x/47/42/2d/47422d5d566a445078b4a8c1a2b5f68e.jpg" class="img-fluid" alt="Series Image">
+          <div class="text-box">
+            <h1 class="title4">Four On The Floor</h1>
+            <p class="info-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis iusto, temporibus sed amet vitae repellendus. Quidem, aspernatur dignissimos excepturi, quis accusamus ab accusantium iure mollitia cupiditate commodi repellendus, nulla quasi!</p>
+            <a href="#">
+              <h3 class="text2">자세히 보기</h3>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="Home_footer"></footer>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="webjars/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var slider = document.querySelector('.carousel');
+      var slideIndex = 0;
+      var slides = slider.querySelectorAll('.carousel-item');
+      var totalSlides = slides.length;
+
+      function showSlide(index) {
+        if (index < 0) {
+          index = totalSlides - 1;
+        } else if (index >= totalSlides) {
+          index = 0;
+        }
+
+        slides.forEach(function(slide) {
+          slide.classList.remove('active');
+        });
+
+        slides[index].classList.add('active');
+        slideIndex = index;
+      }
+
+      function slideNext() {
+        showSlide(slideIndex + 1);
+      }
+
+      function slidePrev() {
+        showSlide(slideIndex - 1);
+      }
+
+      setInterval(slideNext, 6000);
+
+      var productList = document.getElementById('productList');
+      var products = [];
+
+      // 임시 데이터
+      products.push({
+        imageUrl: 'https://example.com/product1.jpg',
+        name: 'Product 1'
+      });
+      products.push({
+        imageUrl: 'https://example.com/product2.jpg',
+        name: 'Product 2'
+      });
+      products.push({
+        imageUrl: 'https://example.com/product3.jpg',
+        name: 'Product 3'
+      });
+
+      products.forEach(function(product) {
+        var productItem = document.createElement('div');
+        productItem.classList.add('col');
+
+        var card = document.createElement('div');
+        card.classList.add('card');
+
+        var productImage = document.createElement('img');
+        productImage.classList.add('card-img-top');
+        productImage.src = product.imageUrl;
+        productImage.alt = 'Product Image';
+
+        var cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+
+        var productName = document.createElement('h5');
+        productName.classList.add('card-title');
+        productName.textContent = product.name;
+
+        cardBody.appendChild(productName);
+        card.appendChild(productImage);
+        card.appendChild(cardBody);
+        productItem.appendChild(card);
+
+        productList.appendChild(productItem);
+      });
+    });
+  </script>
+</body>
+</html>

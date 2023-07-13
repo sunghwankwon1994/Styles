@@ -1,0 +1,35 @@
+// home.js
+
+// 서버에서 데이터를 가져와서 화면에 표시하는 함수
+
+		$(document).ready(function() {
+			$.ajax({
+				url: "/api/products", // 데이터를 가져올 URL
+				method: "GET",
+				dataType: "json",
+				success: function(data) {
+					var products = data;
+					var productList = $("#productList");
+
+					for (var i = 0; i < products.length; i++) {
+						var product = products[i];
+						var imageUrl = product.imageUrl;
+						var productName = product.name;
+
+						var productItem = $("<div>").addClass("product-item");
+						var productImage = $("<img>").addClass("product-image").attr("src", imageUrl).attr("alt", "Product Image");
+						var productTitle = $("<p>").addClass("product-title").text(productName);
+
+						productItem.append(productImage);
+						productItem.append(productTitle);
+						productList.append(productItem);
+					}
+				},
+				error: function(xhr, status, error) {
+					console.log(error);
+				}
+			});
+		});
+
+// 페이지 로드 시 데이터 가져오기
+fetchAndDisplayData();

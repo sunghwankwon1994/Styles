@@ -1,0 +1,43 @@
+package com.semiproject.styles.admin;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+    private final UserRepository userRepository;
+    private final HttpServletRequest request;
+
+    @Autowired
+    public UserDetailsServiceImpl(UserRepository userRepository, HttpServletRequest request) {
+        this.userRepository = userRepository;
+        this.request = request;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new UsernameNotFoundException("Invalid email or password");
+        }
+        if(user.isAdmin()) {
+        	authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
+        saveUserInSession(user);
+        
+        return user;
+    }
+
+    private void saveUserInSession(User user) {
+        HttpSession session = request.getSession(true);
+        session.setAttribute("user", user);
+    }
+    
+}

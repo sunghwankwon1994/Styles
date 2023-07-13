@@ -1,0 +1,171 @@
+@import
+	url("https://fonts.googleapis.com/css2?family=Rasa&family=Redressed&display=swap")
+	;
+
+body {
+	align-items: center;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+		url("https://i.pinimg.com/474x/cc/04/fd/cc04fd3c30055c463147ad28c48a333e.jpg");
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: grid;
+	height: 100vh;
+	place-items: center;
+}
+
+.container {
+	background-color: white;
+	border-radius: 3%;
+	max-width: 60%;
+	height: 80%;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.photo {
+	position: absolute;
+}
+
+.title1 {
+	font-family: "Redressed", cursive;
+	font-size: 44px;
+	font-weight: 400;
+	text-align: center;
+	margin: 0;
+}
+
+.title2 {
+	font-family: "Rasa", serif;
+	font-size: 17px;
+	font-weight: 400;
+	text-align: center;
+	margin: 0;
+	margin-bottom: 1.7rem;
+}
+
+.button1 {
+	cursor: pointer;
+	background-color: black;
+	width: 300px;
+	border-radius: 10px;
+	color: white;
+	font-size: 17px;
+	font-weight: bold;
+	letter-spacing: 0.1rem;
+	padding: 0.9rem 4rem;
+	margin-top: 1.7rem;
+	font-family: "Redressed", cursive;
+}
+
+.button2 {
+	cursor: pointer;
+	background-color: white;
+	width: 300px;
+	border: 1px solid black;
+	border-radius: 10px;
+	color: black;
+	font-size: 17px;
+	font-weight: bold;
+	letter-spacing: 0.1rem;
+	padding: 0.9rem 4rem;
+	margin-top: 1.2rem;
+	font-family: "Redressed", cursive;
+}
+
+.form {
+	background-color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 5rem;
+	height: 100%;
+	text-align: center;
+	margin-left: 50%;
+	position: absolute;
+}
+
+.input {
+	background-color: lightgray;
+	border-radius: 10px;
+	border: none;
+	padding: 0.9rem 0.9rem;
+	margin: 0.5rem 0;
+	/* width: 270px; */
+}
+
+.label {
+	text-align: left;
+	font-family: "Redressed", cursive;
+}
+
+/* 수정한 부분 */
+.input {
+	width: 18vw;
+	display: block;
+}
+
+.button1, .button2 {
+	width: 20vw;
+}
+
+.photo {
+	width: 60%;
+	height: 100%;
+}
+
+.photo>img {
+	image-rendering: auto;
+	height: 100%;
+	width: 100%;
+}
+
+/* 모바일 화면에 대한 스타일 수정 */
+@media ( max-width : 768px) , ( max-width : 900px) {
+	.container {
+		max-width: 90%;
+		height: 70%;
+	}
+	.photo {
+		display: none;
+	}
+	.form {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		position: static;
+	}
+	.button1, .button2 {
+		padding: 10px;
+		justify-content: center;
+		width: 50vw;
+		height: 5vh;
+		font-size: medium;
+		display: flex;
+		text-align: center;
+		padding: 10px;
+	}
+	.input {
+		width: 45vw;
+		display: block;
+	}
+	.form {
+		padding: 0 2rem;
+		margin-left: 0;
+	}
+}
+
+/* 데스크탑 화면에 대한 스타일 수정 */
+@media ( min-width : 1024px) {
+	.photo {
+		width: 50%;
+		height: 100%;
+	}
+	.input {
+		display: block;
+	}
+}

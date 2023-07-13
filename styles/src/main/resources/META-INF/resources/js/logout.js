@@ -1,0 +1,35 @@
+document.addEventListener("DOMContentLoaded", function() {
+	const logoutLink = document.querySelector("a[href='/logout']");
+
+	if (logoutLink) {
+		logoutLink.addEventListener("click", function(event) {
+			event.preventDefault();
+			logout();
+		});
+	}
+});
+
+function logout() {
+	fetch("/logout", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		}
+	})
+		.then(function(response) {
+			if (response.ok) {
+				window.location.href = "/";
+			} else {
+				console.error("Failed to logout");
+			}
+		})
+		.catch(function(error) {
+			console.error("Failed to logout", error);
+		});
+}
+function handleOrderClick() {
+	const confirmMessage = '로그인이 필요한 페이지입니다. 로그인 페이지로 이동하시겠습니까?';
+	if (confirm(confirmMessage)) {
+		window.location.href = '/login';
+	}
+}

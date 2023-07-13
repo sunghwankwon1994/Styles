@@ -1,0 +1,12 @@
+
+package com.semiproject.styles.webMvcConfigurer;
+
+
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.mediaType("css", MediaType.TEXT_CSS);
+    }
+}

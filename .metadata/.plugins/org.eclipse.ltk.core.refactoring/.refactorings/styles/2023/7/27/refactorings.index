@@ -1,0 +1,45 @@
+1688435406186	Rename resource 'home.jsp'
+1688435454276	Delete element
+1688436973592	Move 'WEB-INF' to 'reswources'
+1688436978942	Move 2 resources to 'reswources'
+1688437328758	Rename resource 'reswources'
+1688439541442	Delete element
+1688440125642	Rename compilation unit 'AdminMapper.java'
+1688440777572	Delete element
+1688440783737	Rename type 'AdminEntity'
+1688441090369	Rename compilation unit 'AdminDAO.java'
+1688442579060	Rename compilation unit 'AdminController.java'
+1688442593663	Delete element
+1688442598876	Delete element
+1688444246566	Rename type 'Member'
+1688444341766	Delete element
+1688444388888	Rename compilation unit 'MemberController.java'
+1688445991247	Copy file
+1688446085166	Move 'userList.jsp' to 'admin'
+1688446175246	Copy file
+1688448942526	Delete element
+1688450907909	Copy file
+1688451091510	Rename resource 'signup'
+1688451139695	Rename resource 'userList.jsp'
+1688451182092	Rename resource 'signup.jsp'
+1688451849828	Rename resource 'signUp.jsp'
+1688452119579	Rename type 'signupController'
+1688452124809	Rename type 'registerController'
+1688541123651	Delete element
+1688542003003	Rename resource 'product.jsp'
+1688542185586	Move 'products.jsp' to 'jsp'
+1688542196587	Move 'products.jsp' to 'product'
+1688542201490	Rename resource 'product'
+1688542462334	Rename resource 'product.css'
+1688547753271	Copy file
+1688547794816	Delete element
+1688548361091	Delete element
+1688548374528	Copy file
+1688563645564	Copy file
+1688564664774	Delete element
+1688609099165	Delete element
+1688617025805	Delete element
+1688618830316	Rename compilation unit 'SecurityConfig.java'
+1688706271658	Delete element
+1688706947423	Delete element
+1688717382957	Delete element

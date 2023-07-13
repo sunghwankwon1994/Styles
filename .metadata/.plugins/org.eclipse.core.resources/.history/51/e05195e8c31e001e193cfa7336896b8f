@@ -1,0 +1,42 @@
+package com.semiproject.styles.security;
+
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CustomAuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
+
+	@Override
+	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException exception) throws IOException, ServletException {
+
+		String errorMessage = getErrorMessage(exception);
+
+		// 로그인 페이지로 리다이렉트하며 에러 메시지 전달
+		String redirectUrl = "/login?error=" + URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
+		getRedirectStrategy().sendRedirect(request, response, redirectUrl);
+	}
+
+	private String getErrorMessage(AuthenticationException exception) {
+		String errorMessage;
+		if (exception instanceof BadCredentialsException) {
+			errorMessage = "Invalid email or password";
+		} else if (exception instanceof DisabledException) {
+			errorMessage = "Account is disabled";
+		} else {
+			errorMessage = "Authentication failed";
+		}
+		return errorMessage;
+	}
+}

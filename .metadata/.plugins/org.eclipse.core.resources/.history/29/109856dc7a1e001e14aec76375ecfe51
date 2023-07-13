@@ -1,0 +1,11 @@
+// logout.js
+document.addEventListener("DOMContentLoaded", function() {
+    const logoutButton = document.querySelector("#logoutButton");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function() {
+            // 로그아웃 요청 처리
+            console.log("Logout clicked");
+            // ...
+        });
+    }
+});

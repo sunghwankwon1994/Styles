@@ -1,0 +1,76 @@
+package com.semiproject.styles.cart;
+
+import com.semiproject.styles.admin.User;
+import com.semiproject.styles.admin.UserRepository;
+import com.semiproject.styles.product.Product;
+import com.semiproject.styles.product.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
+@Controller
+public class CartController {
+
+    private final CartRepository cartRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
+
+    @Autowired
+    public CartController(CartRepository cartRepository, UserRepository userRepository, ProductRepository productRepository) {
+        this.cartRepository = cartRepository;
+        this.userRepository = userRepository;
+        this.productRepository = productRepository;
+    }
+
+    @GetMapping
+    public String viewCart(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+
+        if (user == null) {
+            // 로그인되지 않은 사용자는 로그인 페이지로 리다이렉트
+            return "redirect:/login";
+        }
+
+        List<Cart> cartItems = cartRepository.findByUser(user);
+        model.addAttribute("cartItems", cartItems);
+        return "cart/cart";
+    }
+    
+    // 사용자 정보를 세션에서 가져오는 API 추가
+    @GetMapping("/api/user")
+    @ResponseBody
+    public User getUserFromSession(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        return user;
+    }
+
+    @PostMapping("/api/cart/add/{productId}")
+    public ResponseEntity<String>Based on the provided code, it appears to be a Java Spring Boot application with the following features:
+
+1. User entity (`User`) representing user information such as username, email, password, address, phone number, and admin status.
+2. User repository (`UserRepository`) for managing user data and performing database operations.
+3. User service (`UserService`) for saving user data and encoding the password using a `PasswordEncoder`.
+4. User details service (`UserDetailsServiceImpl`) implementing the Spring Security `UserDetailsService` to load user details by username (email) for authentication.
+5. User controller (`UserController`) handling CRUD operations for managing users, including listing, adding, editing, and deleting users.
+6. Cart entity (`Cart`) representing a user's cart containing products.
+7. Cart repository (`CartRepository`) for managing cart data and performing database operations.
+8. Cart service (`CartService`) for retrieving cart items by user and managing cart items.
+9. Cart controller (`CartController`) handling cart-related operations, including adding products to the cart and removing items from the cart.
+10. Home controller (`HomeController`) handling the home page request.
+11. Login controller (`LoginController`) handling the login page request.
+12. Product entity (`Product`) representing product information such as name, price, description, and image URL.
+13. Product repository (`ProductRepository`) for managing product data and performing database operations.
+14. Product service (`ProductService`) for retrieving product data.
+15. Product controller (`ProductController`) handling product-related operations, including listing products and retrieving product details.
+16. Web security configuration (`WebSecurityConfig`) providing security configurations, authentication, and authorization rules using Spring Security.
+
+In summary, this code represents a web application with user management, cart functionality, product listing, and security features implemented using Java Spring Boot.

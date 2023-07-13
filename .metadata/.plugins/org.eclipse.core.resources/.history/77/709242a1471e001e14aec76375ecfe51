@@ -1,0 +1,5 @@
+package com.semiproject.styles.cart;
+
+public interface CartRepository {
+
+}

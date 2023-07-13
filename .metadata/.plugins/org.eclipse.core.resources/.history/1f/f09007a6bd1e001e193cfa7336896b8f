@@ -1,0 +1,147 @@
+const form = document.getElementById("form");
+const username = document.getElementById("username");
+const phone = document.getElementById("phone_number");
+const email = document.getElementById("email");
+const address = document.getElementById("address");
+const password = document.getElementById("password");
+const password2 = document.getElementById("password2");
+
+// Show error outline
+function showError(input, message) {
+	const formControl = input.parentElement;
+	formControl.className = "form-control error";
+	const small = formControl.querySelector("small");
+	small.innerText = message;
+}
+
+// Show success outline
+function showSuccess(input) {
+	const formControl = input.parentElement;
+	formControl.className = "form-control success";
+}
+// Check email is valid
+function checkEmail(input) {
+	const re =
+		/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	if (re.test(input.value.trim())) {
+		showSuccess(input);
+	} else {
+		showError(input, "옳바른 이메일 형식이 아닙니다.");
+	}
+}
+function checkRequired(inputArr) {
+	inputArr.forEach(function(input) {
+		if (input.value.trim() === "") {
+			showError(input, `${getFieldName(input)}을(를) 입력해주세요`);
+		} else {
+			showSuccess(input);
+		}
+	});
+}
+// Check input length
+function checkLength(input, min, max) {
+	if (input.value.length < min) {
+		showError(
+			input,
+			`${getFieldName(input)}은(는) 최소 ${min}자 이상이여야 합니다`
+		);
+	} else if (input.value.length > max) {
+		showError(
+			input,
+			`${getFieldName(input)}은(는) 최대 ${max}자 이하여야 합니다`
+		);
+	} else {
+		showSuccess(input);
+	}
+}
+
+// Check passwords match
+function checkPasswordMatch(input1, input2) {
+	if (input1.value !== input2.value) {
+		showError(input2, "패스워드가 일치하지 않습니다.");
+	}
+}
+// Get fieldname
+function getFieldName(input) {
+	return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+// Event listeners
+form.addEventListener("submit", function(e) {
+	e.preventDefault();
+	let isValid = true;
+	checkRequired([username, phone, email, address, password, password2]);
+	checkLength(username, 3, 15);
+	checkLength(password, 6, 20);
+	checkEmail(email);
+	checkPasswordMatch(password, password2);
+
+	const formControls = document.querySelectorAll(".form-control");
+	formControls.forEach(function(formControl) {
+		if (formControl.classList.contains("error")) {
+			isValid = false;
+		}
+	});
+
+	if (isValid) {
+		const formData = {
+			username: username.value,
+			phone_number: phone.value,
+			email: email.value,
+			address: address.value,
+			password: password.value,
+		};
+
+		// Send data to backend using AJAX
+		sendDataToBackend(formData);
+	}
+});
+    function sample5_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = data.address; // 최종 주소 변수
+
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample5_address").value = addr;
+                // 주소로 상세 정보를 검색
+                geocoder.addressSearch(data.address, function(results, status) {
+                    // 정상적으로 검색이 완료됐으면
+                    if (status === daum.maps.services.Status.OK) {
+
+                        var result = results[0]; //첫번째 결과의 값을 활용
+
+                        // 해당 주소에 대한 좌표를 받아서
+                        var coords = new daum.maps.LatLng(result.y, result.x);
+                        // 지도를 보여준다.
+                        mapContainer.style.display = "block";
+                        map.relayout();
+                        // 지도 중심을 변경한다.
+                        map.setCenter(coords);
+                        // 마커를 결과값으로 받은 위치로 옮긴다.
+                        marker.setPosition(coords)
+                    }
+                });
+            }
+        }).open();
+    }
+function sendDataToBackend(formData) {
+	fetch("/signup/success", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(formData),
+	})
+		.then(response => {
+			if (response.ok) {
+				console.log("Data sent successfully");
+				window.location.href = "/signup/success";
+			} else {
+				console.error("Error sending data");
+			}
+		})
+		.catch(error => {
+			console.error("Error sending data:", error);
+		});
+}
+
+

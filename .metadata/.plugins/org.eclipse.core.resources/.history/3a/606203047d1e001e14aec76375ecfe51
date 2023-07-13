@@ -1,0 +1,29 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const logoutLink = document.querySelector("a[href='/logout']");
+
+    if (logoutLink) {
+        logoutLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            logout();
+        });
+    }
+});
+
+function logout() {
+    fetch("/logout", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(function(response) {
+            if (response.ok) {
+                window.location.href = "/";
+            } else {
+                console.error("Failed to logout");
+            }
+        })
+        .catch(function(error) {
+            console.error("Failed to logout", error);
+        });
+}

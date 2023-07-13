@@ -1,0 +1,63 @@
+// home.js
+
+// 서버에서 데이터를 가져와서 화면에 표시하는 함수
+function fetchAndDisplayData() {
+  fetch('/api/products') // 데이터를 가져올 API 엔드포인트 주소
+    .then(response => response.json()) // JSON 형태로 응답 변환
+    .then(data => {
+      // 데이터를 받아서 화면에 표시하는 로직
+      const productContainer = document.querySelector('.product-list');
+
+      // 데이터를 순회하면서 화면에 추가
+      data.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.classList.add('product-item');
+
+        const productImage = document.createElement('img');
+        productImage.classList.add('product-image');
+        productImage.src = product.imageUrl;
+        productImage.alt = 'Product Image';
+
+        const productTitle = document.createElement('p');
+        productTitle.classList.add('product-title');
+        productTitle.textContent = product.name;
+
+        productItem.appendChild(productImage);
+        productItem.appendChild(productTitle);
+        productContainer.appendChild(productItem);
+      });
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+  document.addEventListener('DOMContentLoaded', function() {
+    var slider = document.querySelector('.slider');
+    var slideIndex = 0;
+    var slides = slider.getElementsByTagName('img');
+    var totalSlides = slides.length;
+
+    function showSlide(index) {
+      if (index < 0) {
+        index = totalSlides - 1;
+      } else if (index >= totalSlides) {
+        index = 0;
+      }
+
+      var translateX = index * -100;
+      slider.style.transform = 'translateX(' + translateX + '%)';
+      slideIndex = index;
+    }
+
+    function slideNext() {
+      showSlide(slideIndex + 1);
+    }
+
+    function slidePrev() {
+      showSlide(slideIndex - 1);
+    }
+
+    setInterval(slideNext, 3000);
+  });
+// 페이지 로드 시 데이터 가져오기
+fetchAndDisplayData();

@@ -1,0 +1,55 @@
+package com.semiproject.styles.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	private final UserDetailsService userDetailsService;
+
+	@Autowired
+	public WebSecurityConfig(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable().authorizeRequests().antMatchers("/css/**", "/js/**", "/signup/**", "/login").permitAll()
+				.antMatchers("/admin/users").hasRole("USER") // "/admin/users"에 대한 접근 권한 설정
+				.antMatchers("/order").hasRole("USER") // "/order"에 대한 접근 권한 설정
+				.anyRequest().permitAll() // 다른 모든 요청에 대해서는 인증 없이 허용
+				.and().formLogin().loginPage("/login").usernameParameter("email") // 이메일 파라미터를 사용자명으로 설정
+				.passwordParameter("password") // 비밀번호 파라미터를 패스워드로 설정
+				.defaultSuccessUrl("/admin/users", true).permitAll().and().logout().logoutSuccessUrl("/login")
+				.permitAll();
+	}
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
+
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
+}

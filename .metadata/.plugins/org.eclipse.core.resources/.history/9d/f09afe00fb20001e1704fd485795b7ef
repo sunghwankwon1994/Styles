@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Products Page</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,0,0" />
+<link href="../../css/products.css" rel="stylesheet" type="text/css" />
+<link href="webjars/bootstrap/5.3.0/css/bootstrap.min.css"
+	rel="stylesheet">
+</head>
+<body>
+<%@ include file="../common/navbar.jspf"%>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12"> <!-- 이 부분을 col-lg-12로 변경 -->
+            <div class="d-flex justify-content-end mb-3">
+                <div class="input-group" style="max-width: 300px;">
+                    <input type="search" class="form-control" placeholder="Search">
+                    <button class="btn btn-outline-secondary" type="button" id="search-button">Search</button>
+                </div>
+            </div>
+        </div>
+	</div>
+    <div class="row">
+        <div class="col-lg-12"> <!-- 새로운 row를 추가하고 이 부분을 col-lg-12로 변경 -->
+            <div class="detail"></div>
+        </div>
+	</div>
+	<ul class="list row"></ul>
+</div>
+<script src="../../js/products.js"></script>
+<script src="../../js/logout.js"></script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

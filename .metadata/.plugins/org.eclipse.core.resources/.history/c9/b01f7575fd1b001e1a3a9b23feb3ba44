@@ -1,0 +1,40 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="../../css/login.css" rel="stylesheet" type="text/css" />
+<title>Login</title>
+<script>
+	function goToSignUp() {
+		window.location.href = "/signup";
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+		<div class="photo">
+			<img
+				src="https://i.pinimg.com/564x/fe/70/8a/fe708a4ea99d3fb6ec6674a943bf3d9f.jpg"
+				alt="Description of the image">
+		</div>
+		<form id="loginForm" class="form" action="/login" method="post">
+			<h2 class="title1">Welcome back</h2>
+			<h4 class="title2">Find your styles on styles</h4>
+			<label for="email" class="label">Email</label> <input type="email"
+				id="email" name="email" class="input" required /> <label
+				for="password" class="label">Password</label> <input type="password"
+				id="password" name="password" class="input" required />
+			<button type="submit" class="button1">Sign In</button>
+			<button type="button" class="button2" onclick="goToSignUp()">Sign
+				Up</button>
+			<c:if test="${not empty error}">
+				<input type="hidden" name="error" value="${error}" />
+			</c:if>
+		</form>
+	</div>
+</body>
+</html>

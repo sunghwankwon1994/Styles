@@ -1,0 +1,227 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	color: black;
+	text-decoration-line: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+.Home_nav-bar {
+	width: auto;
+	height: 60px;
+	background-color: rgb(33, 33, 33);
+}
+
+.Home_footer {
+	width: auto;
+	height: 150px;
+	background-color: #000;
+}
+
+.product-container {
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	background-color: #fff;
+}
+
+.product-container h2 {
+	margin: 20px;
+}
+
+.product-list {
+	justify-content: center;
+	margin: 10px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.product-item {
+	position: relative;
+	width: 280px;
+	height: 300px;
+	margin: 10px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.product-item:hover {
+	filter: brightness(60%);
+}
+
+.custom-col {
+	width: 280px;
+	margin: 10px;
+}
+
+.card {
+	width: 280px;
+}
+
+.product-image {
+	border-radius: 5px;
+	width: 280px;
+	height: 100%;
+	cursor: poinster;
+}
+
+.product-title {
+	position: absolute;
+	font-weight: bold;
+	margin-bottom: 5px;
+	font-size: 30px;
+	color: #f0a9a9;
+	top: 80%;
+	left: 45%;
+}
+
+.slider-container {
+	width: 100%;
+	height: 400px;
+	overflow: hidden;
+}
+
+.navbar {
+	width: auto;
+	height: 60px;
+	background-color: rgb(33, 33, 33);
+}
+
+.slider {
+	display: flex;
+	transition: transform 0.3s ease-in-out;
+}
+
+.slider img {
+	width: 100%;
+	height: auto;
+}
+
+.product-price {
+	color: #888;
+}
+
+.title1 {
+	position: absolute;
+	top: 70%;
+	left: 58%;
+	width: 100%;
+	transform: translate(-50%, -50%);
+	font-size: 30;
+}
+
+.title2 {
+	position: absolute;
+	top: 64%;
+	left: 58%;
+	width: 100%;
+	transform: translate(-50%, -50%);
+	font-size: 15px;
+}
+
+#main1 {
+	width: 100%;
+	background-color: rgb(239, 238, 228);
+}
+
+#main1 td {
+	width: 50%;
+	height: auto;
+}
+
+#main1 td img {
+	position: relative;
+	margin: 30px;
+	width: 30%;
+	height: 30%;
+	top: 50%;
+	left: 33%;
+} /* 좀 더 균일하게 배치하고 싶은데 잘 안됨 */
+.series1 {
+	width: 100%;
+	height: 540px;
+	background-color: #212121;
+	text-align: center;
+}
+
+.series2>img, .series1>img {
+	width: 45%;
+	height: 40vh;
+	padding: 20px;
+}
+
+.series1 img {
+	float: left;
+}
+
+.series2 img {
+	float: right;
+}
+
+.text-box {
+	padding: 20px;
+}
+
+.text-box p {
+	width: auto;
+	padding: 10px 30px 20px 10px;
+}
+
+.title3, .title4 {
+	color: #fff;
+	display: inline-block;
+	width: auto;
+}
+
+.info-text {
+	color: #fff;
+}
+
+.text1, .text2 {
+	color: #fff;
+	padding: 30px;
+	width: auto;
+	padding: 30px;
+}
+
+.series2 {
+	width: 100%;
+	height: 540px;
+	background-color: #212121;
+	text-align: center;
+}
+
+@media ( max-width : 768px) {
+	.series1, .series2 {
+		height: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.series1>img, .series2>img {
+		width: 100%;
+		height: auto;
+	}
+	.series1 img, .series2 img {
+		float: none;
+	}
+	.card{
+	width:280px;
+	}
+	.custom-col {
+		width: 100%;
+		margin: 10px;
+		display: flex;
+		justify-content: center;
+	}
+.navbar-collapse{
+	z-index:1;
+	background-color:#000;
+}
+}

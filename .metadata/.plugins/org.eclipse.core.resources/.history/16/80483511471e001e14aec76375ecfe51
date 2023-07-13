@@ -1,0 +1,12 @@
+package com.semiproject.styles.cart;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.semiproject.styles.admin.User;
+
+@Repository
+public interface CartItemRepository extends JpaRepository<CartItem, Long> {
+	List<CartItem> findByUser(User user);
+}

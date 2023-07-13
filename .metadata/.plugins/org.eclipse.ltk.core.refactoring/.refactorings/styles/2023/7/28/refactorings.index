@@ -1,0 +1,15 @@
+1688894935672	Rename resource 'header.jsp'
+1688894942604	Rename resource 'footer.jsp'
+1688894945971	Rename resource 'navbar.jsp'
+1688897130222	Rename resource 'header.jspf'
+1688897134839	Rename resource 'navbar.jspf'
+1688897809785	Rename resource 'navbar.jsp'
+1688899826372	Delete element
+1688900184029	Rename type 'CartItem'
+1688900278692	Rename compilation unit 'CartItemRepository.java'
+1688900319392	Rename type 'CartIRepository'
+1688900331374	Delete element
+1688901052997	Rename compilation unit 'WebMvcConfigurer.java'
+1688901551965	Delete element
+1689003061145	Rename resource '1.png'
+1689003077184	Rename resource '2.png'

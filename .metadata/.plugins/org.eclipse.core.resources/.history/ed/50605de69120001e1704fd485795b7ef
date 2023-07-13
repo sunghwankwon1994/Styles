@@ -1,0 +1,250 @@
+/* products.css */
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Red+Rose&display=swap");
+
+.container {
+  max-width: 1280px;
+  margin: auto;
+  padding: 20px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  list-style-type: none;
+  margin: 3rem 0;
+}
+
+.list > li {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.title {
+  font-family: "Red Hat Text", sans-serif;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.header {
+  display: flex;
+  width: 1280px;
+  margin: auto;
+  background: black;
+}
+
+.name {
+  color: white;
+  font-family: "Red Rose", cursive;
+  font-size: 30px;
+  margin: 1rem;
+  margin-left: 2rem;
+}
+
+.nav {
+  display: flex;
+  line-height: 1rem;
+}
+
+.nav > li {
+  margin-left: 100px;
+}
+
+.icons {
+  margin-left: 8rem;
+}
+
+.material-symbols-outlined {
+  width: 25px;
+  top: 1px;
+  height: 25px;
+  right: 25px;
+}
+
+.head {
+  display: flex;
+  width: 1280px;
+  margin: auto;
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+.head > div > input {
+  float: right;
+  background-color: lightgray;
+  border: none;
+  border-radius: 3px;
+  width: 100%;
+  max-width: 300px; /* 변경된 부분: 최대 너비 설정 */
+  height: 40px; /* 변경된 부분: 세로 크기 조정 */
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  float: right;
+  text-align: center;
+  width: 90%;
+  font-family: "Red Hat Text", sans-serif;
+  font-weight: 700;
+  margin-right: 120px;
+}
+
+.searchArea {}
+
+.searchArea > div {
+  display: inline-block;
+}
+
+.search {
+  position: relative;
+  width: 100%; /* 변경된 부분: 너비 100%로 설정 */
+  margin-top: 1.5rem; /* 변경된 부분: 이미지 아래에 마진 추가 */
+}
+
+input {
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.search .material-symbols-outlined {
+  position: absolute;
+  width: 20px;
+  top: 50%;
+  transform: translateY(-50%); /* 변경된 부분: 수직 가운데 정렬 */
+  right: 12px;
+  margin: 0;
+  margin-bottom: px;
+  border: 20px;
+  background-color: white;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 1280px;
+  margin: auto;
+}
+
+.detail {
+  flex: 1;
+  margin-top: 3rem;
+}
+
+.cloth {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 2rem;
+}
+
+.cloth2 {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 15px;
+  margin-left: 2rem;
+}
+
+.detail > img {
+  display: block;
+  margin: 1rem auto;
+}
+
+.nav > li > a {
+  color: white;
+  text-decoration: none;
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  margin-left: 1.5rem;
+}
+
+.container.list {
+  display: flex;
+  margin: auto;
+}
+
+.list > li {
+  flex: 1;
+  margin-top: 3rem;
+  text-align: center;
+  list-style-type: none;
+  margin-left: 3rem;
+}
+
+.prd-box:hover {
+  transition: 0.3s;
+}
+
+.list > li > div {
+  text-align: center;
+}
+
+.section > img {
+  border-radius: 10px;
+  width: 200px;
+  height: 250px;
+  filter: brightness(90%);
+}
+
+.clothes {
+  font-family: "Red Hat Text", sans-serif;
+}
+
+.button {
+  background-color: black;
+  width: 400px;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  padding: 0.9rem 4rem;
+  cursor: pointer;
+  font-family: "Red Hat Text", sans-serif;
+}
+
+p {
+  font-family: "Red Hat Text", sans-serif;
+  font-size: 13px;
+}
+
+.info-box {
+  color: #000;
+}
+
+/* Bootstrap Overrides */
+
+.container {
+  padding: 0;
+}
+
+.list {
+  margin: 0;
+}
+
+.list > li {
+  margin-left: 0;
+}
+
+.button {
+  width: 100%;
+}
+
+.detail {
+  margin: 0;
+}
+
+.detail > img {
+  margin: 0;
+}
